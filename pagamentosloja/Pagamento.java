@@ -48,11 +48,22 @@ public class Pagamento {
     }
     
     public void realizarPagamento() {
-        if (valorPagamento = 0 ) {
-            System.out.println("Valor insuficiente");
-        }
-        
+    if (valorPagamento <= 0) {
+        statusTransacao = "REPROVADO";
+    } else if (metodoPagamento == null || metodoPagamento.isEmpty()) {
+        statusTransacao = "REPROVADO";
+    } else {
+        statusTransacao = "APROVADO";
     }
+}
 
+    public void mostrarPagamento() {
+        System.out.println("===INFORMACOES PAGAMENTO===");  
+        System.out.println("Numero do pagamento: " + numeroPagamento);
+        System.out.println("Valor da venda: " + valorVenda);
+        System.out.println("Valor do Pagamento: " + valorPagamento);
+        System.out.println("Metodo de pagamento: " + metodoPagamento);
+        System.out.println("Status da transacao: " + statusTransacao);
+    }
     
 }

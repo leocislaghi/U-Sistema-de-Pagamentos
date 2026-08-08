@@ -22,13 +22,28 @@ public class PagamentosLoja {
         caixa.mostratDados();
         
         //Classe Pagamento
-        Pagamento pagamento = new Pagamento
+        Pagamento pagamento = new Pagamento();
         
         pagamento.setMetodoPagamento("Pix");
         pagamento.setNumeroPagamento(1545525);
-        pagamento.setStatusTransacao("Aprovado");
-        pagamento.setValorPagamento(50.9);
+        
+        pagamento.setValorPagamento(50);
         pagamento.setValorVenda(25);
-    }
+        
+        pagamento.realizarPagamento();
+        
+        pagamento.mostrarPagamento();
     
+        //Classe Loja
+
+        Loja loja = new Loja();
+
+        loja.adicionarFuncionario(funcionario);
+        loja.adicionarCaixa(caixa);
+        loja.adicionarPagamento(pagamento);
+
+        loja.listarFuncionarios();
+        loja.listarCaixas();
+        loja.listarPagamentos();
+        }
 }
