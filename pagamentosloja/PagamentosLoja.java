@@ -9,52 +9,66 @@ public class PagamentosLoja {
 
         do {
             System.out.println("\n===== MENU PRINCIPAL =====");
-            System.out.println("1 - Cadastrar Funcionario");
-            System.out.println("2 - Cadastrar Caixa");
+            System.out.println("1 - Cadastrar Gerente");
+            System.out.println("2 - Cadastrar Operador de Caixa");
             System.out.println("3 - Realizar Pagamento");
-            System.out.println("4 - Listar Funcionarios");
-            System.out.println("5 - Listar Caixas");
-            System.out.println("6 - Listar Pagamentos");
-            System.out.println("7 - Sair");
+            System.out.println("4 - Listar Funcionarios");;
+            System.out.println("5 - Listar Pagamentos");
+            System.out.println("6 - Sair");
             System.out.print("Escolha uma opcao: ");
             opcao = teclado.nextInt();
 
             switch (opcao) {
 
                 case 1:
-                    Funcionario funcionario = new Funcionario();
+                    Gerente gerente = new Gerente();
 
                     System.out.print("ID: ");
-                    funcionario.setId(teclado.next());
+                    gerente.setId(teclado.next());
 
                     System.out.print("Nome: ");
-                    funcionario.setNome(teclado.next());
+                    gerente.setNome(teclado.next());
 
                     System.out.print("CPF: ");
-                    funcionario.setCpf(teclado.next());
+                    gerente.setCpf(teclado.next());
 
                     System.out.print("Salario: ");
-                    funcionario.setSalario(teclado.nextDouble());
+                    gerente.setSalario(teclado.nextDouble());
 
                     System.out.print("Cargo: ");
-                    funcionario.setCargo(teclado.next());
+                    gerente.setCargo(teclado.next());
 
-                    loja.adicionarFuncionario(funcionario);
+                    System.out.print("Setor: ");
+                    gerente.setSetor(teclado.next());
 
-                    System.out.println("Funcionario cadastrado!");
+                    System.out.print("Bonus: ");
+                    gerente.setBonus(teclado.nextDouble());
+
+                    loja.adicionarFuncionario(gerente);
                     break;
 
                 case 2:
-                    Caixa caixa = new Caixa();
+                    OperadorCaixa operador = new OperadorCaixa();
 
-                    System.out.print("Operador: ");
-                    caixa.setOperador(teclado.next());
+                    System.out.print("ID: ");
+                    operador.setId(teclado.next());
 
-                    caixa.setStatus("Fechado");
+                    System.out.print("Nome: ");
+                    operador.setNome(teclado.next());
 
-                    loja.adicionarCaixa(caixa);
+                    System.out.print("CPF: ");
+                    operador.setCpf(teclado.next());
 
-                    System.out.println("Caixa cadastrado!");
+                    System.out.print("Salario: ");
+                    operador.setSalario(teclado.nextDouble());
+
+                    System.out.print("Cargo: ");
+                    operador.setCargo(teclado.next());
+
+                    System.out.print("Numero do caixa: ");
+                    operador.setNumeroCaixa(teclado.nextInt());
+
+                    loja.adicionarFuncionario(operador);
                     break;
 
                 case 3:
@@ -85,14 +99,10 @@ public class PagamentosLoja {
                     break;
 
                 case 5:
-                    loja.listarCaixas();
-                    break;
-
-                case 6:
                     loja.listarPagamentos();
                     break;
 
-                case 7:
+                case 6:
                     System.out.println("Programa encerrado.");
                     break;
 
@@ -100,6 +110,6 @@ public class PagamentosLoja {
                     System.out.println("Opcao invalida.");
             }
 
-        } while (opcao != 7);
+        } while (opcao != 6);
     }
 }

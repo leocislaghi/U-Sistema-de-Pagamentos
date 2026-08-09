@@ -1,5 +1,5 @@
 package pagamentosloja;
-public class Funcionario {
+public abstract class Funcionario {
     private String id;
     private String nome;
     private String cpf;
