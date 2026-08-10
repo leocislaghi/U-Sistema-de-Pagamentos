@@ -13,7 +13,7 @@ public class Loja {
        public void adicionarFuncionario(Funcionario funcionario) {
         for (Funcionario f : funcionarios) {
             if (f.getId().equals(funcionario.getId())) {
-                System.out.println("ID já cadastrado!");
+                System.out.println("ID ja cadastrado!");
                 return;
             }
         }
@@ -42,7 +42,7 @@ public class Loja {
             System.out.println("Nenhum pagamento cadastrado.");
             return;
         }
-
+    
         for (Pagamento pagamento : pagamentos) {
             pagamento.mostrarPagamento();
         }

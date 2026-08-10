@@ -72,24 +72,131 @@ public class PagamentosLoja {
                     break;
 
                 case 3:
-                    Pagamento pagamento = new Pagamento();
+                    System.out.println("===== FORMA DE PAGAMENTO =====");
+                    System.out.println("1 - PIX");
+                    System.out.println("2 - Boleto");
+                    System.out.println("3 - Cartao");
+                    System.out.print("Escolha: ");
 
-                    System.out.print("Numero do pagamento: ");
-                    pagamento.setNumeroPagamento(teclado.nextInt());
+                    int forma = teclado.nextInt();
 
-                    System.out.print("Valor da venda: ");
-                    pagamento.setValorVenda(teclado.nextDouble());
+                    Pagamento pagamento = null;
 
-                    System.out.print("Valor do pagamento: ");
-                    pagamento.setValorPagamento(teclado.nextDouble());
+                    if (forma == 1) {
+                        Pix pix = new Pix();
 
-                    System.out.print("Metodo de pagamento: ");
-                    pagamento.setMetodoPagamento(teclado.next());
+                        System.out.print("Numero do pagamento: ");
+                        pix.setNumeroPagamento(teclado.nextInt());
 
-                    pagamento.realizarPagamento();
+                        System.out.print("Valor: ");
+                        pix.setValor(teclado.nextDouble());
 
-                    if (pagamento.getStatusTransacao().equals("APROVADO")) {
+                        System.out.print("Chave PIX: ");
+                        pix.setChavePix(teclado.next());
+
+                        pix.realizarPagamento();
+                        pagamento = pix;
+
+                    } else if (forma == 2) {
+                        Boleto boleto = new Boleto();
+
+                        System.out.print("Numero do pagamento: ");
+                        boleto.setNumeroPagamento(teclado.nextInt());
+
+                        System.out.print("Valor: ");
+                        boleto.setValor(teclado.nextDouble());
+
+                        System.out.print("Codigo de barras: ");
+                        boleto.setCodigoBarras(teclado.next());
+
+                        boleto.realizarPagamento();
+                        pagamento = boleto;
+
+                    } else if (forma == 3) {
+
+                        System.out.println("===== TIPO DE CARTAO =====");
+                        System.out.println("1 - Debito");
+                        System.out.println("2 - Credito");
+                        System.out.print("Escolha: ");
+
+                        int tipo = teclado.nextInt();
+
+                        if (tipo == 1) {
+                            Debito debito = new Debito();
+
+                            System.out.print("Numero do pagamento: ");
+                            debito.setNumeroPagamento(teclado.nextInt());
+
+                            System.out.print("Valor: ");
+                            debito.setValor(teclado.nextDouble());
+
+                            System.out.print("Numero do cartao: ");
+                            debito.setNumeroCartao(teclado.next());
+
+                            System.out.print("Nome do titular: ");
+                            debito.setNomeTitular(teclado.next());
+
+                            System.out.print("Bandeira: ");
+                            debito.setBandeira(teclado.next());
+
+                            System.out.print("CVV: ");
+                            debito.setCvv(teclado.next());
+
+                            System.out.print("Senha: ");
+                            debito.setSenha(teclado.next());
+
+                            System.out.print("Saldo disponivel: ");
+                            debito.setSaldoDisponivel(teclado.nextDouble());
+
+                            debito.realizarPagamento();
+                            pagamento = debito;
+
+                        } else if (tipo == 2) {
+                            System.out.println("1 - A vista");
+                            System.out.println("2 - Parcelado");
+                            System.out.print("Escolha: ");
+
+                            int escolha = teclado.nextInt();
+
+                            Credito credito;
+
+                            if (escolha == 1) {
+                                credito = new Credito();
+                            } else {
+                                System.out.print("Quantidade de parcelas: ");
+                                int parcelas = teclado.nextInt();
+                                credito = new Credito(parcelas);
+                            }
+
+                            System.out.print("Numero do pagamento: ");
+                            credito.setNumeroPagamento(teclado.nextInt());
+
+                            System.out.print("Valor: ");
+                            credito.setValor(teclado.nextDouble());
+
+                            System.out.print("Numero do cartão: ");
+                            credito.setNumeroCartao(teclado.next());
+
+                            System.out.print("Nome do titular: ");
+                            credito.setNomeTitular(teclado.next());
+
+                            System.out.print("Bandeira: ");
+                            credito.setBandeira(teclado.next());
+
+                            System.out.print("CVV: ");
+                            credito.setCvv(teclado.next());
+
+                            System.out.print("Limite disponivel: ");
+                            credito.setLimiteDisponivel(teclado.nextDouble());
+
+                            credito.realizarPagamento();
+                            pagamento = credito;
+                        }
+                    }
+
+                    if (pagamento != null && "APROVADO".equals(pagamento.getStatusTransacao())) {
                         loja.adicionarPagamento(pagamento);
+                        pagamento.mostrarPagamento();
                     }
 
                     break;
