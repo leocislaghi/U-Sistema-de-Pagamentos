@@ -1,5 +1,6 @@
 package pagamentosloja;
 import java.util.ArrayList;
+import java.util.Scanner;
 public class Loja {
     
     private ArrayList<Funcionario> funcionarios;
@@ -46,5 +47,31 @@ public class Loja {
         for (Pagamento pagamento : pagamentos) {
             pagamento.mostrarPagamento();
         }
+    }
+    
+    public void alterarFuncionario(String id, Scanner teclado) {
+
+        for (Funcionario funcionario : funcionarios) {
+
+            if (funcionario.getId().equals(id)) {
+
+                System.out.print("Novo nome: ");
+                funcionario.setNome(teclado.next());
+
+                System.out.print("Novo CPF: ");
+                funcionario.setCpf(teclado.next());
+
+                System.out.print("Novo salario: ");
+                funcionario.setSalario(teclado.nextDouble());
+
+                System.out.print("Novo cargo: ");
+                funcionario.setCargo(teclado.next());
+
+                System.out.println("Funcionario alterado com sucesso!");
+                return;
+            }
+        }
+
+        System.out.println("Funcionario nao encontrado.");
     }
 }
